@@ -1,0 +1,39 @@
+<h1>Search Meals by Email</h1>
+
+<%= form_with url: search_by_email_receipts_path, method: :get, local: true do %>
+  <div>
+    <%= label_tag :email, "Enter Email ID:" %>
+    <%= text_field_tag :email, params[:email], class: "form-control" %>
+  </div>
+  <br>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+<% if params[:email].present? %>
+  <h2>Results for: <%= params[:email] %></h2>
+
+  <% if @receipts.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Total Meal</th>
+          <th>Remaining Meal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @receipts.each do |receipt| %>
+          <tr>
+            <td><%= receipt.total_meal %></td>
+            <td><%= receipt.remaining_meal %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No records found.</p>
+  <% end %>
+<% end %>
+
+<footer >
+<p>Footer</p>
+</footer>

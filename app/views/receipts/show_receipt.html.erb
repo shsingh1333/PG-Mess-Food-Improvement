@@ -1,0 +1,12 @@
+<h2>Your Latest Receipt</h2>
+
+<% if receipt %>
+  <p><strong>Total Meals:</strong> <%= receipt.total_meal %></p>
+  <p><strong>Remaining Meals:</strong> <%= receipt.remaining_meal %></p>
+  <p><strong>Date:</strong> <%= receipt.created_at.strftime("%d-%m-%Y %I:%M %p") %></p>
+<% else %>
+  <p>No receipt found.</p>
+<% end %>
+
+<a href="<%= fetch_receipt_path %>">Check Another Receipt</a>
+: latest_receipt 

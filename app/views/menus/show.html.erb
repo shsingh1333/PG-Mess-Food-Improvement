@@ -1,0 +1,18 @@
+<div class="form_container">
+<p style="color: green"><%= notice %></p>
+
+<%= render @menu %>
+
+<div>
+<br/>
+  <%= link_to "Edit this menu", edit_menu_path(@menu) ,:class=>"form_box"%> |
+  <%= link_to "Back to menus",menus_path ,:class=>"form_box"%>
+  <br/>
+<br/>
+  <%= button_to "Destroy this menu", @menu, method: :delete ,:class=>"form_box"%>
+</div>
+
+</div>
+<footer >
+<p>Footer</p>
+</footer>

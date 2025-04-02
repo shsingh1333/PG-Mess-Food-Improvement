@@ -1,0 +1,44 @@
+<h1>New Order Received</h1>
+<p><strong>User Id:</strong> <%= @student.id %> </p>
+<p><strong>User:</strong> <%= @student.name %> (<%= @user.email %>)</p>
+
+<h2>Ordered Items:</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.customized_food.name %></td>
+        <td><%= line_item.quantity %></td>
+        <td><%= number_to_currency(line_item.customized_food.price) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% charge_per_meal = Setting.find_by(key: 'charge_per_meal')&.value.to_f || 50 %>     
+
+<% if Receipt.joins(:student)
+.where(students: { email: @student.email }, mess: true, payment_done: true)
+.order(receipt_date: :desc)
+.first %>
+<p>Total Amount: <%= number_to_currency(@line_items.sum { |item| item.customized_food.price * item.quantity }) %></p>
+  
+  <p>Charge per meal : $<%= charge_per_meal %></h3>
+  
+<p> Amount after deduction of charge per meal($<%= charge_per_meal %>) : <%= number_to_currency(@line_items.sum { |item| item.customized_food.price * item.quantity }-charge_per_meal) %></p>
+
+<% else %>
+ <p>Total Price: <%= number_to_currency(@line_items.sum { |item| item.customized_food.price * item.quantity }) %></p>
+
+<% end %>
+
+<p>Thank you!</p>

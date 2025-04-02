@@ -1,0 +1,36 @@
+https://www.paypalobjects.com/en_GB/vhelp/paypalmanager_help/credit_card_numbers.htm
+
+
+
+
+Steps:=
+shopping cart details:
+ create scaffold for cart, line items:
+	rails generate scaffold cart
+	rails generate scaffold line_item cart_id:integer store_id:integer quantity:integer
+
+changes in prjt->db->migrate->create_line_item
+add this line->        t.integer :quantity,:default=>1
+
+then in cmd prompt:
+       Rails db:migrate
+
+add this line in prjt->view->index.html.erb
+<%= button_to 'Add to Cart', line_items_path(:store_id => music.id) %> 
+
+changes in controller->line_items_controller (in create f
+changes in controller->line_items_controller (in create function)
+
+changes in controller->cart_controller (in show function)
+
+changes in view->cart->show file
+
+create partial file in views->line items-> _line_item.html.erb
+
+create partial file in views->cart->_cart.html.erb
+
+define current cart function in controller->application_controller
+
+model->cart.rb
+
+model->line_item.rb

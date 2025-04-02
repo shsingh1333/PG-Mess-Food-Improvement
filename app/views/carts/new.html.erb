@@ -1,0 +1,17 @@
+<div class="form_container">
+<% content_for :title, "New cart" %>
+
+<h1>New cart</h1>
+
+<%= render "form", cart: @cart %>
+
+<br>
+
+<div>
+  <%= link_to "Back to carts", carts_path ,:class=>"form_box" %>
+</div>
+
+</div>
+<footer >
+<p>Footer</p>
+</footer>

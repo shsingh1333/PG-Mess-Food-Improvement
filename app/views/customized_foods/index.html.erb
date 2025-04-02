@@ -1,0 +1,30 @@
+
+
+<%= link_to "New customized food", new_customized_food_path, :class=>"custom-link_with_form_box" %>
+
+
+
+<div class="product-gallery-container">
+<h1 align="center">Customized Food</h1>
+    <table class="product-table">
+        <tr class="product-table-row">
+            <% count = 0 %>
+             <% @customized_foods.each do |customized_food| %>
+                <% if (count % 3) == 0 %>
+        </tr>
+        <tr class="product-table-row">
+                <% end %>
+                <% count += 1 %>
+                <td class="product-table-cell">
+                  
+
+                <%= render customized_food %>
+                <p>
+                  <%= link_to "Show this customized food", customized_food %>
+                </p>
+       
+                </td>
+            <% end %>
+        </tr>
+    </table>
+</div>

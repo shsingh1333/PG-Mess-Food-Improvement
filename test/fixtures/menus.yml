@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2025-03-15
+  breakfast: MyText
+  lunch: MyText
+  dinner: MyText
+
+two:
+  date: 2025-03-15
+  breakfast: MyText
+  lunch: MyText
+  dinner: MyText

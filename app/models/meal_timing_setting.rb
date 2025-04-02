@@ -1,0 +1,2 @@
+class MealTimingSetting < ApplicationRecord
+end

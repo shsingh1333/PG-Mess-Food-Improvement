@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<title><%= content_for(:title) || "Pg Mess Food Improvement" %></title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+
+<%= yield :head %>
+
+<%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+<%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+<link rel="icon" href="/icon.png" type="image/png">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon.png">
+
+<%# Includes all stylesheet files in app/assets/stylesheets %>
+<%= stylesheet_link_tag "application", "styles", media: "all" %>
+
+<%= javascript_importmap_tags %>
+<style>
+  body {
+    background-image: url("<%= asset_path('bg1.jpg') %>");
+    background-size: cover;
+    background-position: center;
+ 
+    height: 100vh;
+    color :white;
+  }
+  .product-table-cell {
+    margin: 5px;
+    background: rgba(37, 28, 28, 0.603);
+    width: 300px;
+    height: 330px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+header {
+    background: rgba(37, 28, 28, 0.603);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#========================== menu table =============================
+.menu_card{
+ 
+  text-align: center;
+  margin-top:30px;
+  font-size: 18px;
+}
+.menu_table{
+  margin-top: 30px;
+  margin-left: 250px;
+  margin-bottom:55px;
+
+}
+
+
+
+#============================== custom link ===========================
+.custom-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.custom-link:hover {
+  color: red;
+}
+
+#================================= form ==============================
+.form_container{
+  background: rgba(37, 28, 28, 0.603);
+    margin-top: 150px;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    
+  }
+  .ad_field {
+
+    margin-bottom: 20px;
+    text-align: center;
+  
+    color: white;
+
+}
+
+
+
+
+
+</style>
+
+
+  </head>
+
+  <body>
+   
+  <header>
+  
+  <div class="logo">
+  <h1 align="center" style="color:white; background: rgba(37, 28, 28, 0.603);">PG Mess Food Improvement</h1>
+  <p class="navbar-text float-right">
+  <% if user_signed_in? %>
+    Logged in as <strong><%= current_user.email %></strong>.
+    <%= link_to "Edit profile", edit_user_registration_path, class: "custom-link" %> |
+    <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "custom-link"  %>
+
+   
+   
+  <% end %>
+  </p>
+  </div>
+  <nav>
+      <ul>
+  
+       <% if !session[:admin].nil? %>
+         <li><a href="http://127.0.0.1:3000/home/index">Home</a></li>
+          <%elsif user_signed_in?%>
+         <li><a href="http://127.0.0.1:3000/admin/menus">Home</a></li>
+         <li><%= link_to "My Details", my_details_path, class: "btn btn-primary" %></li>
+
+       
+        <%end%>
+      
+     
+        
+        
+       <% if user_signed_in? &&  !session[:cart_id].nil? %>   
+       <li><a href="/carts/<%=session[:cart_id]%>">Cart</a></li>
+          <%elsif user_signed_in? &&  session[:cart_id].nil?%>
+          <li><a href="http://127.0.0.1:3000/carts/empty_cart">Cart</a></li>
+    
+        <%end%>
+
+
+          
+         
+       
+
+
+
+        <% if !session[:admin].nil? %>
+          <li> <a href="http://127.0.0.1:3000/admin/logout">Admin logout</a></li>      
+      <%end%>
+         
+      </ul>
+      </nav>
+      </header>
+
+
+
+
+
+
+    <%= yield %>
+
+
+
+
+
+
+  </body>
+</html>

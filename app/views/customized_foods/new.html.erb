@@ -1,0 +1,16 @@
+<div class="form_container">
+<% content_for :title, "New customized food" %>
+
+<h1>New customized food</h1>
+
+<%= render "form", customized_food: @customized_food %>
+
+<br>
+
+<div>
+  <%= link_to "Back to customized foods", customized_foods_path ,:class=>"form_box"%>
+</div>
+</div>
+<footer >
+<p>Footer</p>
+</footer>

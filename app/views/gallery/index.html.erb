@@ -1,0 +1,26 @@
+
+<div class="product-gallery-container">
+<h1 align="center">Customized Food</h1>
+    <table class="product-table">
+        <tr class="product-table-row">
+            <% count = 0 %>
+            <% @food_gallery.each do |food| %>
+                <% if (count % 3) == 0 %>
+        </tr>
+        <tr class="product-table-row">
+                <% end %>
+                <% count += 1 %>
+                <td class="product-table-cell">
+                    <%= image_tag food.food_image, class: "food-image",:height=>"180",:width=>"200" %><br />
+                    <span class="food-name"><%= food.name %></span><br />
+                    
+                    <span >Description: <%= food.description %></span><br />
+                    <span class="food-price">Price: <%=number_to_currency(food.price) %></span><br />
+
+                     <%= button_to 'Add to Cart', line_items_path(:customized_food_id => food.id),:class=>"buy-now-button" %> 
+       
+                </td>
+            <% end %>
+        </tr>
+    </table>
+</div>

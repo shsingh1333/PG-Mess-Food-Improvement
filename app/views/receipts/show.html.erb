@@ -1,0 +1,17 @@
+<div class="form_container">
+<p style="color: green"><%= notice %></p>
+
+<%= render @receipt %>
+<br/>
+<div>
+  <%= link_to "Edit this receipt", edit_receipt_path(@receipt) ,:class=>"form_box"%> |
+  <%= link_to "Back to receipts", receipts_path ,:class=>"form_box"%>
+<br/>
+  <%= button_to "Destroy this receipt", @receipt, method: :delete ,:class=>"form_box" %>
+</div>
+</div>
+
+
+<footer >
+<p>Footer</p>
+</footer>

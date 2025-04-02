@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  receipt_date: 2025-03-15
+  for_month: MyString
+  advance: 1
+  mess: false
+  room_rent: 1
+  total: 1
+  payment_done: false
+  student: one
+
+two:
+  receipt_date: 2025-03-15
+  for_month: MyString
+  advance: 1
+  mess: false
+  room_rent: 1
+  total: 1
+  payment_done: false
+  student: two

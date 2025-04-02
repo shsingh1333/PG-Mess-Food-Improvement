@@ -1,0 +1,64 @@
+<div class="menu_card">
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Menus" %>
+
+<h1 style="margin-left: 600px;">Menus</h1>
+<%= link_to "Create New Menu", new_menu_path, class: "custom-link_with_form_box" %>
+
+
+<table border="3" class="menu_table">
+<thead>
+<tr class="menu_table_cell_admin">
+<th class="menu_table_cell_admin">Date & Day</th>
+<th class="menu_table_cell">Breakfast (<%=MealTimingSetting.find_by(key: 'for_breakfast_start_time').value.strftime("%I:%M %p")%> - <%=MealTimingSetting.find_by(key: 'for_breakfast_end_time').value.strftime("%I:%M %p")%>)</th>
+<th class="menu_table_cell">Lunch (<%=MealTimingSetting.find_by(key: 'for_lunch_start_time').value.strftime("%I:%M %p")%> - <%=MealTimingSetting.find_by(key: 'for_lunch_end_time').value.strftime("%I:%M %p")%>)</th>
+<th class="menu_table_cell">Dinner (<%=MealTimingSetting.find_by(key: 'for_dinner_start_time').value.strftime("%I:%M %p")%> - <%=MealTimingSetting.find_by(key: 'for_dinner_end_time').value.strftime("%I:%M %p")%>)</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  <% @menus.each do |menu| %>
+    <tr class="menu_table_cell_admin">
+    <td><%= menu.date.strftime("%d-%m-%Y (%A)") %>
+    
+    
+    
+    <div>
+    <%= link_to "Edit Public Menu", edit_menu_path(menu), class: "custom-link" %>
+    </div>
+    
+    
+    </td>
+    
+    <!-- Breakfast -->
+    <td class="menu_table_cell_admin">
+    <%= menu.breakfast %><br>
+    
+    </td>
+    
+    <!-- Lunch -->
+    <td class="menu_table_cell_admin">
+    <%= menu.lunch %><br>
+    
+    </td>
+    
+    <!-- Dinner -->
+    <td class="menu_table_cell_admin">
+    <%= menu.dinner %><br>
+    
+    </td>
+    </tr>
+    <% end %>
+    </tbody>
+    </table>
+  
+    
+    </div>
+    
+    <br/>
+    <footer >
+    <p>Footer</p>
+    </footer>
+    
+    

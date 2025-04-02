@@ -1,0 +1,32 @@
+
+<%= link_to "show all receipts", receipts_path ,class:"custom-link_with_form_box" %>
+
+
+<%= link_to "New receipt", new_receipt_path ,class:"custom-link_with_form_box" %>
+
+
+<%= link_to "New student", new_student_path ,class:"custom-link_with_form_box"%>
+
+
+    <%= link_to "Create new User Sign up", new_user_registration_path ,class:"custom-link_with_form_box"  %> 
+<div class="form_container">
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Students" %>
+
+<h1>Students</h1>
+<h2>Total Students: <%= @total_students %></h2>
+
+<=================================>
+<div id="students">
+  <% @students.each do |student| %>
+    <%= render student %>
+    <p>
+    <br/>
+      <%= link_to "Show this student", student ,:class=>"custom-link_with_form_box" %>
+    </p>
+    <=================================>
+  <% end %>
+</div>
+</div>
+  

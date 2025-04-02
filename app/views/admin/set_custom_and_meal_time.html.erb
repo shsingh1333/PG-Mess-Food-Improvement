@@ -1,0 +1,29 @@
+<h2 align="center">Set Meal & Custom Food Timings</h2>
+<div class="form_container">
+
+<%= form_with url: admin_update_meal_timings_path, method: :post do %>
+  <% [
+    "for_breakfast_start_time", "for_breakfast_end_time",
+    "for_lunch_start_time", "for_lunch_end_time",
+    "for_dinner_start_time", "for_dinner_end_time",
+    "for_breakfast_custom_start", "for_breakfast_custom_end",
+    "for_lunch_custom_start", "for_lunch_custom_end",
+    "for_dinner_custom_start", "for_dinner_custom_end"
+  ].each do |key| %>
+
+    <div class="field">
+      <%= label_tag key.humanize %>
+      <%= time_field_tag "meal_timing_settings[#{key}]", MealTimingSetting.find_by(key: key)&.value || "06:00" ,:class=>"form_box"%>
+    </div>
+
+  <% end %>
+
+  <div class="actions">
+    <%= submit_tag "Save Timings" ,:class=>"form_box"%>
+  </div>
+<% end %>
+
+</div>
+<footer>
+footer
+</footer>

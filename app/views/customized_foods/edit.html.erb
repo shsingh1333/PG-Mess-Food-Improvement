@@ -1,0 +1,19 @@
+<div class="form_container">
+<% content_for :title, "Editing customized food" %>
+
+<h1>Editing customized food</h1>
+
+<%= render "form", customized_food: @customized_food %>
+
+<br>
+
+<div>
+  <%= link_to "Show this customized food", @customized_food %> |
+  <%= link_to "Back to customized foods", customized_foods_path %>
+</div>
+
+
+</div>
+<footer >
+<p>Footer</p>
+</footer>

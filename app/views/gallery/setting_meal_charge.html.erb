@@ -1,0 +1,8 @@
+<div class="form_container">
+<h2>Set Meal Charge</h2>
+<%= form_with url: update_meal_charge_admin_path, method: :post do %><br/>
+  <label for="charge_per_meal">Charge per meal ($):</label>          <br/><br/>
+  <%= number_field_tag :charge_per_meal, Setting.find_by(key: 'charge_per_meal')&.value.to_f, step: 1 ,:class=>"form_box" %><br/><br/>
+  <%= submit_tag "Update Charge", :class=>"form_box"  %>
+<% end %>
+</div>

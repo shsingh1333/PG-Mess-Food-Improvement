@@ -1,0 +1,135 @@
+
+<div class="menu_card">
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Menus" %>
+
+<h2 align="center">Menus</h2>
+
+<table border="3" class="menu_table">
+  <thead>
+    <tr class="menu_table_cell">
+      <th class="menu_table_cell">Date & Day</th>
+      <th class="menu_table_cell">Breakfast (<%=MealTimingSetting.find_by(key: 'for_breakfast_start_time').value.strftime("%I:%M %p")%> - <%=MealTimingSetting.find_by(key: 'for_breakfast_end_time').value.strftime("%I:%M %p")%>)</th>
+      <th class="menu_table_cell">Lunch (<%=MealTimingSetting.find_by(key: 'for_lunch_start_time').value.strftime("%I:%M %p")%> - <%=MealTimingSetting.find_by(key: 'for_lunch_end_time').value.strftime("%I:%M %p")%>)</th>
+      <th class="menu_table_cell">Dinner (<%=MealTimingSetting.find_by(key: 'for_dinner_start_time').value.strftime("%I:%M %p")%> - <%=MealTimingSetting.find_by(key: 'for_dinner_end_time').value.strftime("%I:%M %p")%>)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menus.each do |menu| %>
+      <tr class="menu_table_cell">
+        <td><%= menu.date.strftime("%d-%m-%Y (%A)") %></td>
+
+        <!-- Breakfast -->
+        <td class="menu_table_cell">
+          <%= menu.breakfast %><br>
+          
+
+
+          <% current_time = Time.now %>
+<% current_hour_min = current_time.hour * 60 + current_time.min %>  
+
+<% breakfast_start = MealTimingSetting.find_by(key: 'for_breakfast_custom_start')&.value&.in_time_zone %>
+<% breakfast_end = MealTimingSetting.find_by(key: 'for_breakfast_custom_end')&.value&.in_time_zone %>
+
+<% if breakfast_start && breakfast_end %>
+  <% breakfast_start_min = breakfast_start.hour * 60 + breakfast_start.min %>
+  <% breakfast_end_min = breakfast_end.hour * 60 + breakfast_end.min %>
+
+  <% if current_hour_min >= breakfast_start_min && current_hour_min < breakfast_end_min && menu.date == Date.today %>
+    </br>
+    <%= link_to "Go for customized food", gallery_index_path, class: "custom-link_with_form_box" %>
+    </br></br>
+    <%= button_to "Extend one meal", extend_meal_path, method: :post, class: "custom-link_with_form_box" %>
+
+  <% else %>
+    <span style="color: grey;">Available from <%= breakfast_start.strftime("%I:%M %p") %> to <%= breakfast_end.strftime("%I:%M %p") %></span>
+  <% end %>
+<% else %>
+  <p style="color: red;">Breakfast timing settings are missing!</p>
+<% end %>
+
+         
+
+
+
+
+        </td>
+
+        <!-- Lunch -->
+        <td class="menu_table_cell">
+          <%= menu.lunch %><br>
+         
+
+          <% current_time = Time.now %>
+<% current_hour_min = current_time.hour * 60 + current_time.min %>  
+
+<% lunch_start = MealTimingSetting.find_by(key: 'for_lunch_custom_start')&.value&.in_time_zone %>
+<% lunch_end = MealTimingSetting.find_by(key: 'for_lunch_custom_end')&.value&.in_time_zone %>
+
+<% if lunch_start && lunch_end %>
+  <% lunch_start_min = lunch_start.hour * 60 + lunch_start.min %>
+  <% lunch_end_min = lunch_end.hour * 60 + lunch_end.min %>
+
+  <% if current_hour_min >= lunch_start_min && current_hour_min < lunch_end_min && menu.date == Date.today %>
+    </br>
+    <%= link_to "Go for customized food", gallery_index_path, class: "custom-link_with_form_box" %>
+    </br></br>
+    <%= button_to "Extend one meal", extend_meal_path, method: :post, class: "custom-link_with_form_box" %>
+
+  <% else %>
+    <span style="color: grey;">Available from <%= lunch_start.strftime("%I:%M %p") %> to <%= lunch_end.strftime("%I:%M %p") %></span>
+  <% end %>
+<% else %>
+  <p style="color: red;">Lunch timing settings are missing!</p>
+<% end %>
+
+
+
+
+        </td>
+
+        <!-- Dinner -->
+        <td class="menu_table_cell">
+          <%= menu.dinner %><br>
+     
+          <% current_time = Time.now %>
+          <% current_hour_min = current_time.hour * 60 + current_time.min %>  
+          
+          <% dinner_start = MealTimingSetting.find_by(key: 'for_dinner_custom_start')&.value&.in_time_zone %>
+          <% dinner_end = MealTimingSetting.find_by(key: 'for_dinner_custom_end')&.value&.in_time_zone %>
+          
+       
+            <% dinner_start_min = dinner_start.hour * 60 + dinner_start.min %>
+            <% dinner_end_min = dinner_end.hour * 60 + dinner_end.min %>
+          
+         
+            <% if current_hour_min >= dinner_start_min && current_hour_min < dinner_end_min &&  menu.date == Date.today %>
+            </br>
+              <%= link_to "Go for customized food", gallery_index_path, class: "custom-link_with_form_box" %>
+              </br></br>
+           <%= button_to "Extend one meal", extend_meal_path, method: :post, class: "custom-link_with_form_box" %>
+
+
+            <% else %>
+              <span style="color: grey;">Available from <%= dinner_start.strftime("%I:%M %p") %> to <%= dinner_end.strftime("%I:%M %p") %></span>
+            <% end %>
+         
+          
+
+          
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+</div>
+
+    
+    
+   
+<footer >
+<p>Footer</p>
+</footer>

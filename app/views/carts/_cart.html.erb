@@ -1,0 +1,25 @@
+
+<% unless cart.line_items.empty? %>
+<div class="cart_title">Your Cart</div>
+<table border="2" class="tab" style="margin: auto;">
+	<%= render(cart.line_items) %>
+	<tr>
+		<td colspan="2">Total</td> 
+		<td class="total_cell"><%= number_to_currency(cart.total_price)  %></td>
+	</tr>
+</table>
+</br>
+<% session[:amount] = cart.total_price %>
+<%= button_to 'Empty Cart', cart, :method => :delete, :confirm => 'Are you sure?' ,:class=>"form_box"  %></br>
+<p>
+	<%= link_to "Continue Adding Food",:controller=>"gallery",:action=>"index" %> | 
+
+<% end %>
+
+
+<% if user_signed_in? %>
+<%= link_to "Checkout", gallery_checkout_path %>
+<% else %>
+<%= link_to "Checkout", new_user_session_path %>
+<% end %>
+</br>

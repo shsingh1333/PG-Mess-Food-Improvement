@@ -1,0 +1,92 @@
+<div class="form_container">
+
+<%= flash[:notice]%>
+<br />
+
+
+
+<%=#for default value of charge_per_meal
+%>
+<% charge_per_meal = Setting.find_by(key: 'charge_per_meal')&.value.to_f || 50 %>     
+
+<% if Receipt.joins(:student)
+        .where(students: { email: current_user.email }, mess: true, payment_done: true)
+        .order(receipt_date: :desc)
+        .first %>
+  
+  <h3>Charge per meal : $<%= charge_per_meal %></h3>
+  <h3>Amount : <%= number_to_currency(session[:amount]) %> - $<%= charge_per_meal %></h3>
+  <h3>Total Amount to be paid: <%= number_to_currency(session[:amount] - charge_per_meal) %></h3>
+
+<% else %>
+  <h3>Total Amount to be paid: <%= number_to_currency(session[:amount]) %></h3>
+<% end %>
+
+
+<br/>
+
+
+
+
+<%= form_with url: "/gallery/checkout", method: :post do |f| %>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, :class=>"form_box"%>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name , :class=>"form_box"%>
+  </div>
+  <div class="field">
+    <%= f.label :credit_card_no %><br />
+    <%= f.text_field :credit_no , :class=>"form_box"%>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_expiry %><br />
+    	<select name="check[month]" id="check_out_month" class="form_box" color="Black">
+		<option selected value="01">Janurary 
+		<option  value="02">Feburary
+		<option  value="03">March
+		<option  value="04">April 
+		<option  value="05">May 
+		<option  value="06">June 
+		<option  value="07">July 
+		<option  value="08">August 
+		<option  value="09">September 
+		<option  value="10">October 
+		<option  value="11">November 
+		<option  value="12">December 
+		</select>
+		<select name="check[year]" id=check_out_year" class="form_box" color="Black">
+	
+		<option  selected value="2025">2025
+		<option  value="2026">2026
+		<option  value="2027">2027
+		<option  value="2028">2028
+		<option  value="2029">2029
+		<option  value="2030">2030
+		<option  value="2031">2031
+		<option  value="2032">2032
+		<option  value="2033">2033
+	</select>
+  </div>
+
+  <div class="field">
+    <%= f.label :verification_number %><br />
+    <%= f.text_field :verification_number ,:class=>"form_box"%>
+  </div>
+  
+
+  <br/><br/>
+  <div class="actions">
+    <%= f.submit "Submit" ,:class=>"form_box" %>
+  </div>
+  <% end %>
+
+
+
+</div>
+<footer >
+<p>Footer</p>
+</footer>
+

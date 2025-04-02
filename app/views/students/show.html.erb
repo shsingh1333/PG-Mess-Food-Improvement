@@ -1,0 +1,16 @@
+<div class="form_container">
+<p style="color: green"><%= notice %></p>
+
+<%= render @student %>
+
+<div>
+<br/>
+  <%= link_to "Edit this student", edit_student_path(@student) ,:class=>"form_box"%> |
+  <%= link_to "Back to students", students_path ,:class=>"form_box"%><br/>
+  <%= button_to "Destroy this student", @student, method: :delete ,:class=>"form_box"%>
+</div>
+
+</div>
+<footer >
+<p>Footer</p>
+</footer>

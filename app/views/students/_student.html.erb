@@ -1,0 +1,77 @@
+<div id="<%= dom_id student %>">
+
+<p>
+<strong style="color: blue;">Student id:</strong>
+<%= student.id %>
+</p>
+
+  <p>
+    <strong style="color: blue;">Name:</strong>
+    <%= student.name %>
+  </p>
+
+  <p>
+    <strong style="color: blue;">Contact no:</strong>
+    <%= student.contact_no %>
+  </p>
+
+  <p>
+    <strong style="color: blue;">Aadhar card no:</strong>
+    <%= student.aadhar_card_no %>
+  </p>
+
+
+  <p>
+  <strong style="color: blue;">Email:</strong>
+  <%= student.email %>
+</p>
+
+  <p>
+    <strong style="color: blue;">Date of occupy:</strong>
+    <%= student.date_of_occupy %>
+  </p>
+
+  <p>
+    <strong style="color: blue;">Room no:</strong>
+    <%= student.room_no %>
+  </p>
+
+
+  <==========><br/>
+  <strong style="color: green;">Receipt:</strong><br/>
+  <==========>
+ 
+  <table border="3">
+    <tr>
+      <th style="color: blue;">Receipt ID</th>
+      <th style="color: blue;">Receipt Date</th>
+      <th style="color: blue;">For Month</th>
+      <th style="color: blue;">Advance</th>
+      <th style="color: blue;">Mess</th>
+      <th style="color: blue;">Room rent</th>
+      <th style="color: blue;">Total Amount</th>
+      <th style="color: blue;">Totol meal</th>
+      <th style="color: blue;">Remaining meal</th>
+    </tr>
+    <% student.receipt.each do |receipt| %>
+      <tr>
+        <td><%= receipt.id %></td>
+        <td><%= receipt.receipt_date %></td>
+        <td><%= receipt.for_month %></td>
+        <td><%= receipt.advance %></td>
+
+        <td><%= receipt.mess %></td>
+       <td><%= receipt.room_rent %></td>
+        <td><%= receipt.total %></td>
+
+         <td><%= receipt.remaining_meal %></td>
+        <td><%= receipt.total_meal %></td>
+      
+        
+      </tr>
+    <% end %>
+  </table>
+
+
+
+</div>

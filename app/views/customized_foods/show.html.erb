@@ -1,0 +1,17 @@
+<div class="form_container">
+<p style="color: green"><%= notice %></p>
+
+<%= render @customized_food %>
+<br/>
+<div>
+  <%= link_to "Edit this customized food", edit_customized_food_path(@customized_food),:class=>"form_box" %> |
+  <%= link_to "Back to customized foods", customized_foods_path ,:class=>"form_box"%>
+
+  <%= button_to "Destroy this customized food", @customized_food, method: :delete  ,:class=>"form_box"%>
+</div>
+
+
+</div>
+<footer >
+<p>Footer</p>
+</footer>

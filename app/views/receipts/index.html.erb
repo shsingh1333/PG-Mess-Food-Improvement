@@ -1,0 +1,50 @@
+<%= link_to "New receipt", new_receipt_path ,:class=>"form_box"%>
+
+<%= link_to "Back to students", students_path ,:class=>"form_box" %>
+
+<div class="form_container">
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Receipts" %>
+
+<h1>Receipts</h1>
+<=============================================>
+<div id="receipts">
+  <% @receipts.each do |receipt| %>
+    <%= render receipt %>
+    
+    
+    <table border="3" align="center" style="margin: auto;">
+    <tr>
+    <th>Total Meals</th>
+    <th>Remaining Meals</th>
+    <th>Actions</th>
+  </tr>
+ 
+  <tr>
+  <td><%= receipt.total_meal %></td>
+      <td><%= receipt.remaining_meal %></td>
+      <td>
+   
+      <%= button_to "Extend Meal", extend_meal_receipt_path(receipt), method: :post, class: "form_box" %>
+      
+      </td>
+      </tr>
+      
+      </table>
+      
+<br/>
+      <p>
+      <%= link_to "Show this receipt", receipt ,:class=>"form_box"%>
+      </p>
+      <=============================================>
+      <% end %>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      </div>

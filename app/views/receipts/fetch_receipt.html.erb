@@ -1,0 +1,12 @@
+<h2>Check Your Latest Receipt</h2>
+<div class="form_container">
+<%= form_with url: fetch_receipt_path, method: :post do |f| %>
+  <%= f.label :email, "Enter Your Email:" %><br/><br/>
+  <%= f.email_field :email, required: true ,:class=>"form_box" %><br/><br/>
+  <%= f.submit "Check Receipt" ,:class=>"form_box" %>
+<% end %>
+
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+</div>

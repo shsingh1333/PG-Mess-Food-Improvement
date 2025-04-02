@@ -1,0 +1,40 @@
+<%= form_with(model: customized_food) do |form| %>
+  <% if customized_food.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(customized_food.errors.count, "error") %> prohibited this customized_food from being saved:</h2>
+
+      <ul>
+        <% customized_food.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name ,:class=>"form_box"%>
+  </div>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.number_field :price ,:class=>"form_box"%>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description ,:class=>"form_box"%>
+  </div>
+
+  <div>
+  <%= form.label :food_image, style: "display: block" %>
+  <%= form.file_field :food_image ,:class=>"form_box"%>
+
+  </div>
+
+
+  <div >
+    <%= form.submit "submit", :class=>"form_box"  %>
+  </div>
+<% end %>
+
